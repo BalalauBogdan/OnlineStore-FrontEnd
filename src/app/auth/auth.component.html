@@ -1,0 +1,67 @@
+<div class = "login-register-container" [ngSwitch] = "viewType">
+  <mat-card *ngSwitchCase = "'login'" class = "card-container">
+    <mat-card-content>
+      <div class = "input-container">
+        <mat-form-field appearance = "fill" class = "input-field">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder = "pat@example.com" [formControl] = "email" required>
+          <mat-error *ngIf = "email.invalid">{{getErrorEmailMessage(email)}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class = "input-container">
+        <mat-form-field appearance = "fill" class = "input-field">
+          <mat-label>Password</mat-label>
+          <input matInput type = "password" [formControl] = "password" required>
+          <mat-error *ngIf = "password.invalid">{{getErrorPasswordMessage(password)}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class = "div-buttons-container">
+        <button mat-raised-button color = "primary" (click) = "onLogIn()">Log In</button>
+        <button mat-button color = "primary" (click) = "onSwitchViewType('register')">Create an account</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngSwitchCase = "'register'" class = "card-container">
+    <mat-card-content>
+      <div class = "input-container">
+        <mat-form-field appearance = "fill" class = "input-field">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder = "Bogdan" [formControl] = "username" required>
+          <mat-error *ngIf = "username.invalid">{{getErrorUsernameMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class = "input-container">
+        <mat-form-field appearance = "fill" class = "input-field">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder = "pat@example.com" [formControl] = "emailRegister" required>
+          <mat-error *ngIf = "emailRegister.invalid">{{getErrorEmailMessage(emailRegister)}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class = "input-container">
+        <mat-form-field appearance = "fill" class = "input-field">
+          <mat-label>Password</mat-label>
+          <input matInput type = "password" [formControl] = "passwordRegister" required>
+          <mat-error *ngIf = "passwordRegister.invalid">{{getErrorPasswordMessage(passwordRegister)}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class = "input-container">
+        <mat-form-field appearance = "fill" class = "input-field">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput type = "password" [formControl] = "confirmPassword" required>
+          <mat-error *ngIf = "confirmPassword.invalid">{{getErrorConfirmPasswordMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class = "div-buttons-container">
+        <button mat-raised-button color = "primary">Register</button>
+        <button mat-button color = "primary" (click) = "onSwitchViewType('login')">Back to Log In</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
