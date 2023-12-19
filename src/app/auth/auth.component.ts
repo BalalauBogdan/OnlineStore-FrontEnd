@@ -5,6 +5,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf, NgSwitch, NgSwitchCase} from "@angular/common";
 import {AuthService} from "../services/auth.service";
+import {UserService} from "../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -30,7 +32,7 @@ export class AuthComponent {
   username = new FormControl('', [Validators.required])
   confirmPassword = new FormControl('', [Validators.required])
 
-  constructor(private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private userService: UserService) { }
 
   onSwitchViewType(viewType: string) {
     this.viewType = viewType;
@@ -70,7 +72,12 @@ export class AuthComponent {
 
   onLogIn() {
     if (this.email.valid && this.password.valid) {
-      alert("valid");
+      this.authService.logIn(this.email.getRawValue()!, this.password.getRawValue()!).subscribe((response: any) => {
+        console.log(response)
+        this.userService.setUser(response.data);
+        console.log(this.userService.getUser().email);
+        this.router.navigate(["/", "home"]);
+      })
     }
   }
 

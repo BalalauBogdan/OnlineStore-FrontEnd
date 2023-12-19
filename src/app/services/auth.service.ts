@@ -8,6 +8,15 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
+  public logIn(email: string, password: string) {
+    let body = {
+      "email": email,
+      "password": password
+    }
+
+    return this.httpClient.post('http://localhost:8080/api/users/login', body);
+  }
+
   public register(username: string, email: string, password: string, confirmPassword: string) {
     let body = {
       "username": username,
