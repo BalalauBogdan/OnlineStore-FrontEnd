@@ -24,6 +24,7 @@ import {Router} from "@angular/router";
   styleUrl: './auth.component.css'
 })
 export class AuthComponent {
+
   viewType = "login";
   email = new FormControl('', [Validators.required, Validators.email]);
   emailRegister = new FormControl('', [Validators.required, Validators.email]);

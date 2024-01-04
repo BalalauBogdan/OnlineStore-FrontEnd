@@ -30,4 +30,20 @@ export class UserService {
       this.userObservable.next(response.data);
     });
   }
+
+  public updateUser(id: string, username: string, email: string, password: string) {
+    let body = {
+      "id": id,
+      "username": username,
+      "email": email,
+      "password": password,
+      "userRole": "USER"
+    }
+
+    return this.httpClient.post(`http://localhost:8080/api/users/${id}`, body);
+  }
+
+  public deleteUser(id: string) {
+    return this.httpClient.delete(`http://localhost:8080/api/users/${id}`);
+  }
 }

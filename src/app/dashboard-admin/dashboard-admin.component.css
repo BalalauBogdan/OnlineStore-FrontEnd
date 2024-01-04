@@ -6,6 +6,23 @@
   height: 100%;
 }
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.card-container{
+  width: 400px;
+  margin: auto;
+}
+
+.input-field{
+  width: 100%;
+}
+
+.div-buttons-container{
+  margin: auto;
+  display: grid;
+}
+
 .item-card {
   background-color: white;
   display: flex;

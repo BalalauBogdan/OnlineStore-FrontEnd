@@ -1,0 +1,96 @@
+<mat-drawer-container class = "page-container" autosize>
+  <mat-toolbar color = "primary">
+    <button mat-icon-button (click) = "onChangePage('home')">
+      <mat-icon>store</mat-icon>
+    </button>
+    <span>Bogdan's Shoe Store</span>
+    <span class = "example-spacer"></span>
+    <button mat-icon-button (click) = "onChangePage('auth')">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-card class = "card-container">
+    <mat-card-content>
+      <div class = "input-container">
+        <mat-form-field appearance = "fill" class = "input-field">
+          <mat-label>Shoe Name</mat-label>
+          <input matInput [formControl] = "shoeName" required>
+          <mat-error *ngIf = "shoeName.invalid">{{getErrorShoeNameMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class = "input-container">
+        <mat-form-field appearance = "fill" class = "input-field">
+          <mat-label>Shoe Image(LINK)</mat-label>
+          <input matInput [formControl] = "shoeImageLink" required>
+          <mat-error *ngIf = "shoeImageLink.invalid">{{getErrorShoeImageLinkMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field floatLabel = "always">
+        <input matInput type = "number" class = "example-right-align" placeholder = "0" [formControl] = "shoePrice" required>
+        <span matTextPrefix>RON&nbsp;</span>
+        <mat-error *ngIf = "shoePrice.invalid">{{getErrorShoePriceMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Shoe Size</mat-label>
+        <mat-select [formControl] = "shoeSize" required>
+          <mat-option value = "35.5">35.5 EU</mat-option>
+          <mat-option value = "36">36 EU</mat-option>
+          <mat-option value = "36.5">36.5 EU</mat-option>
+          <mat-option value = "37.5">37.5 EU</mat-option>
+          <mat-option value = "38">38 EU</mat-option>
+          <mat-option value = "38.5">38.5 EU</mat-option>
+          <mat-option value = "39">39 EU</mat-option>
+          <mat-option value = "40">40 EU</mat-option>
+          <mat-option value = "40.5">40.5 EU</mat-option>
+          <mat-option value = "41">41 EU</mat-option>
+          <mat-option value = "42">42 EU</mat-option>
+          <mat-option value = "42.5">42.5 EU</mat-option>
+          <mat-option value = "43">43 EU</mat-option>
+          <mat-option value = "44">44 EU</mat-option>
+          <mat-option value = "44.5">44.5 EU</mat-option>
+          <mat-option value = "45">45 EU</mat-option>
+          <mat-option value = "45.5">45.5 EU</mat-option>
+          <mat-option value = "46">46 EU</mat-option>
+        </mat-select>
+        <mat-error *ngIf = "shoeSize.invalid">{{getErrorShoeSizeMessage()}}</mat-error>
+      </mat-form-field>
+
+      <div class = "div-buttons-container" *ngIf="viewType === 'create'">
+        <button mat-raised-button color = "primary" (click) = "onCreate()">Create</button>
+      </div>
+      <div class = "div-buttons-container" *ngIf="viewType === 'update'">
+        <button mat-raised-button color = "primary" (click) = "onUpdate()">Update</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div style = "width: 100vw">
+    <div class = "div-row">
+      <mat-card *ngFor = "let product of productArray" class = "item-card">
+        <mat-card-content>
+          <div style = "display: flex">
+            <div>
+              <p>Shoe Name: <span class = "lbl-name">{{product.name}}</span></p>
+              <p>Shoe Size: {{product.size}} EU</p>
+              <p>Shoe Price: {{product.price}} RON</p>
+            </div>
+
+            <img [src] = "product.image" class = "img-preview"/>
+          </div>
+
+          <div class = "div-buttons">
+            <button mat-raised-button color = "primary" (click) = "onEditProduct(product)">Edit</button>
+            <div class = "div-spacer"></div>
+            <button mat-raised-button color = "accent" (click) = "onDeleteProduct(product)">Delete</button>
+          </div>
+
+          <div class="div-spacer"></div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</mat-drawer-container>

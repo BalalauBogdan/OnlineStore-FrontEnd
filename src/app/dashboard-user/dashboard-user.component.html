@@ -1,0 +1,48 @@
+<mat-drawer-container class = "page-container" autosize>
+  <mat-toolbar color = "primary">
+    <button mat-icon-button (click) = "onChangePage('home')">
+      <mat-icon>store</mat-icon>
+    </button>
+    <span>Bogdan's Shoe Store</span>
+    <span class = "example-spacer"></span>
+    <button mat-icon-button (click) = "onChangePage('auth')">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-card class = "card-container">
+    <mat-card-content>
+      <div class = "input-container">
+        <mat-form-field appearance = "fill" class = "input-field">
+          <mat-label>Username</mat-label>
+          <input matInput [formControl] = "username" required>
+          <mat-error *ngIf = "username.invalid">{{getErrorUsernameMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class = "input-container">
+        <mat-form-field appearance = "fill" class = "input-field">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder = "pat@example.com" [formControl] = "email" required>
+          <mat-error *ngIf = "email.invalid">{{getErrorEmailMessage(email)}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class = "input-container">
+        <mat-form-field appearance = "fill" class = "input-field">
+          <mat-label>Password</mat-label>
+          <input matInput [type] = "hide ? 'password' : 'text'" [formControl] = "password" required>
+          <button mat-icon-button matSuffix (click) = "hide = !hide" [attr.aria-label] = "'Hide password'" [attr.aria-pressed] = "hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf = "password.invalid">{{getErrorPasswordMessage(password)}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class = "div-buttons-container">
+        <button mat-raised-button color = "primary" (click) = "onUpdate()">Update</button>
+        <button mat-button color = "warn" (click) = "onDelete()">Delete Account</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</mat-drawer-container>
