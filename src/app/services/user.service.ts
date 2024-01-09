@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class UserService {
 
-  private user: User = new User("", "", "", "");
+  private user: User = new User(2, "Bogdan", "bogdan@bbb.com", "555", "USER");
   private userObservable = new BehaviorSubject([]);
 
   constructor(private httpClient: HttpClient) { }
@@ -31,7 +31,7 @@ export class UserService {
     });
   }
 
-  public updateUser(id: string, username: string, email: string, password: string) {
+  public updateUser(id: number, username: string, email: string, password: string) {
     let body = {
       "id": id,
       "username": username,
@@ -43,7 +43,7 @@ export class UserService {
     return this.httpClient.post(`http://localhost:8080/api/users/${id}`, body);
   }
 
-  public deleteUser(id: string) {
+  public deleteUser(id: number) {
     return this.httpClient.delete(`http://localhost:8080/api/users/${id}`);
   }
 }

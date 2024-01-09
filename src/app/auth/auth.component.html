@@ -12,7 +12,10 @@
       <div class = "input-container">
         <mat-form-field appearance = "fill" class = "input-field">
           <mat-label>Password</mat-label>
-          <input matInput type = "password" [formControl] = "password" required>
+          <input matInput [type] = "hideLogin ? 'password' : 'text'" [formControl] = "password" required>
+          <button mat-icon-button matSuffix (click) = "hideLogin = !hideLogin" [attr.aria-label] = "'Hide password'" [attr.aria-pressed] = "hideLogin">
+            <mat-icon>{{hideLogin ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
           <mat-error *ngIf = "password.invalid">{{getErrorPasswordMessage(password)}}</mat-error>
         </mat-form-field>
       </div>
@@ -45,7 +48,10 @@
       <div class = "input-container">
         <mat-form-field appearance = "fill" class = "input-field">
           <mat-label>Password</mat-label>
-          <input matInput type = "password" [formControl] = "passwordRegister" required>
+          <input matInput [type] = "hideRegister ? 'password' : 'text'" [formControl] = "passwordRegister" required>
+          <button mat-icon-button matSuffix (click) = "hideRegister = !hideRegister" [attr.aria-label] = "'Hide password'" [attr.aria-pressed] = "hideRegister">
+            <mat-icon>{{hideRegister ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
           <mat-error *ngIf = "passwordRegister.invalid">{{getErrorPasswordMessage(passwordRegister)}}</mat-error>
         </mat-form-field>
       </div>
@@ -53,7 +59,10 @@
       <div class = "input-container">
         <mat-form-field appearance = "fill" class = "input-field">
           <mat-label>Confirm Password</mat-label>
-          <input matInput type = "password" [formControl] = "confirmPassword" required>
+          <input matInput [type] = "hideConfirmRegister ? 'password' : 'text'" [formControl] = "confirmPassword" required>
+          <button mat-icon-button matSuffix (click) = "hideConfirmRegister = !hideConfirmRegister" [attr.aria-label] = "'Hide password'" [attr.aria-pressed] = "hideConfirmRegister">
+            <mat-icon>{{hideConfirmRegister ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
           <mat-error *ngIf = "confirmPassword.invalid">{{getErrorConfirmPasswordMessage()}}</mat-error>
         </mat-form-field>
       </div>

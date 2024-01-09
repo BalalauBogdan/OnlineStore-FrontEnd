@@ -7,7 +7,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {NgForOf, NgIf} from "@angular/common";
+import {Location, NgForOf, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 import {MatSelectModule} from "@angular/material/select";
 import {ProductService} from "../services/product.service";
@@ -43,7 +43,7 @@ export class DashboardAdminComponent {
   viewType = 'create';
   currentId = 0;
 
-  constructor(private router: Router, private productService: ProductService) {
+  constructor(private router: Router, private productService: ProductService, private location: Location) {
     this.fetchProducts();
   }
 
@@ -86,10 +86,21 @@ export class DashboardAdminComponent {
   fetchProducts() {
     this.productService.getAllProducts().subscribe((response: any) => {
       const products: Product[] = Object.values(response.data).map((productData: any) => {
-        return new Product(productData.id, productData.name, productData.image, productData.price, productData.size);
+        return {
+          id: productData.id,
+          name: productData.name,
+          image: productData.image,
+          price: productData.price,
+          size: productData.size
+        };
       });
       this.productArray = products;
     });
+  }
+
+  refreshPage() {
+    this.location.go(this.location.path());
+    window.location.reload();
   }
 
   onCreate() {
@@ -99,6 +110,8 @@ export class DashboardAdminComponent {
       this.productService.createProduct(this.shoeName.getRawValue()!, this.shoeImageLink.getRawValue()!, shoePrice, shoeSize)
         .subscribe((response: any) => {
           console.log(response);
+          alert("Product created successfully!");
+          this.refreshPage();
         });
     }
   }
@@ -115,6 +128,8 @@ export class DashboardAdminComponent {
           this.shoeImageLink = new FormControl('', [Validators.required]);
           this.shoePrice = new FormControl('', [Validators.required]);
           this.shoeSize = new FormControl('', [Validators.required]);
+          alert("Product updated successfully!");
+          this.refreshPage();
         });
     }
   }
@@ -122,6 +137,7 @@ export class DashboardAdminComponent {
   onDeleteProduct(product: Product) {
     this.productService.deleteProduct(product.id).subscribe((response: any) => {
       console.log(response);
+      this.refreshPage();
     });
   }
 

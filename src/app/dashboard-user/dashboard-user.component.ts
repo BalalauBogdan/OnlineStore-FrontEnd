@@ -72,6 +72,7 @@ export class DashboardUserComponent {
       this.userService.updateUser(this.userService.getUser().id, this.username.getRawValue()!, this.email.getRawValue()!, this.password.getRawValue()!)
         .subscribe((response: any) => {
           console.log(response);
+          alert(response.message);
         });
     }
   }
@@ -79,6 +80,7 @@ export class DashboardUserComponent {
   onDelete() {
     this.userService.deleteUser(this.userService.getUser().id).subscribe((response: any) => {
       console.log(response);
+      alert(response.message);
     });
     this.onChangePage('auth');
   }

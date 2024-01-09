@@ -1,0 +1,4 @@
+<button mat-icon-button (click) = "cartService.cart.length !== 0 && openCartDialog()">
+  <mat-icon class = "cart-icon">shopping_cart</mat-icon>
+  <span class = "badge" *ngIf = "cartService.cart.length !== 0">{{cartService.cart.length}}</span>
+</button>

@@ -1,0 +1,31 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.page-container {
+  height: 100%;
+}
+
+.middle-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 64px);
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.order-success {
+  font-size: 50px;
+  font-weight: bold;
+  color: rebeccapurple;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

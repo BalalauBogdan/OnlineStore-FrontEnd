@@ -3,6 +3,7 @@ import {AuthComponent} from "./auth/auth.component";
 import {HomeComponent} from "./home/home.component";
 import {DashboardAdminComponent} from "./dashboard-admin/dashboard-admin.component";
 import {DashboardUserComponent} from "./dashboard-user/dashboard-user.component";
+import {OrderConfirmationComponent} from "./order-confirmation/order-confirmation.component";
 
 export const routes: Routes = [
   {
@@ -16,6 +17,9 @@ export const routes: Routes = [
   },
   {
     path: "dashboard-user", component: DashboardUserComponent,
+  },
+  {
+    path: "order-confirmation", component: OrderConfirmationComponent,
   },
   {
     path: "", redirectTo: "auth", pathMatch: "full"

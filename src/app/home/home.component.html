@@ -8,9 +8,7 @@
     <button mat-icon-button (click) = "onSettingsButton()">
       <mat-icon>settings</mat-icon>
     </button>
-    <button mat-icon-button>
-      <mat-icon>shopping_cart</mat-icon>
-    </button>
+    <app-cart-button></app-cart-button>
     <button mat-icon-button (click) = "onChangePage('auth')">
       <mat-icon>exit_to_app</mat-icon>
     </button>
@@ -31,7 +29,7 @@
           </div>
 
           <div class = "div-buttons">
-            <button mat-raised-button color = "warn">Add To Cart</button>
+            <button mat-raised-button color = "warn" (click) = "onAddToCart(product)">Add To Cart</button>
           </div>
         </mat-card-content>
       </mat-card>
