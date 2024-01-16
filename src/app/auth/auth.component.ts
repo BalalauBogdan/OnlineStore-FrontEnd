@@ -81,11 +81,13 @@ export class AuthComponent {
     if (this.email.valid && this.password.valid) {
       this.authService.logIn(this.email.getRawValue()!, this.password.getRawValue()!)
         .subscribe((response: any) => {
-        console.log(response)
-        alert(response.message);
-        this.userService.setUser(response.data);
-        this.router.navigate(["/", "home"]);
-      });
+          console.log(response)
+          //alert(response.message);
+          this.userService.setUser(response.data);
+          this.router.navigate(["/", "home"]);
+        }, (error) => {
+          alert(error.error.message);
+        });
     }
   }
 

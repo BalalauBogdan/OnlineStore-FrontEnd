@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {User} from "../models/User";
-import {BehaviorSubject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -8,27 +7,22 @@ import {HttpClient} from "@angular/common/http";
 })
 export class UserService {
 
-  private user: User = new User(2, "Bogdan", "bogdan@bbb.com", "555", "USER");
-  private userObservable = new BehaviorSubject([]);
+  private user: User = new User(0, "", "", "", "");
 
-  constructor(private httpClient: HttpClient) { }
-
-  getUserList() {
-    return this.userObservable.asObservable();
+  constructor(private httpClient: HttpClient) {
+    const savedUser = localStorage.getItem('userData');
+    if (savedUser) {
+      this.user = JSON.parse(savedUser);
+    }
   }
 
   setUser(user: User): void {
     this.user = user;
+    localStorage.setItem('userData', JSON.stringify(this.user));
   }
 
   getUser(): User {
     return this.user;
-  }
-
-  public readUsers() {
-    this.httpClient.get('http://localhost:8080/api/users/').subscribe((response: any) => {
-      this.userObservable.next(response.data);
-    });
   }
 
   public updateUser(id: number, username: string, email: string, password: string) {
