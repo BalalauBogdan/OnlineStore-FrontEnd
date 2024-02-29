@@ -32,6 +32,8 @@ export class ProductService {
       "size": shoeSize
     }
 
+    console.log(body);
+
     return this.httpClient.post(`http://localhost:8080/api/products/update`, body);
   }
 

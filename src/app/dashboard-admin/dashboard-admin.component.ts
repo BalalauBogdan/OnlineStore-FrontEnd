@@ -118,7 +118,7 @@ export class DashboardAdminComponent {
 
   onUpdate() {
     if (this.shoeName.valid && this.shoeImageLink.valid && this.shoeSize.valid && this.shoePrice.valid) {
-      let shoeSize = parseInt(this.shoeSize.getRawValue()!);
+      let shoeSize = parseFloat(this.shoeSize.getRawValue()!);
       let shoePrice = parseInt(this.shoePrice.getRawValue()!);
       this.productService.updateProduct(this.currentId, this.shoeName.getRawValue()!, this.shoeImageLink.getRawValue()!, shoePrice, shoeSize)
         .subscribe((response: any) => {
