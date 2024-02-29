@@ -9,6 +9,7 @@ import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {User} from "../models/User";
 
 @Component({
   selector: 'app-auth',
@@ -39,7 +40,9 @@ export class AuthComponent {
   username = new FormControl('', [Validators.required])
   confirmPassword = new FormControl('', [Validators.required])
 
-  constructor(private router: Router, private authService: AuthService, private userService: UserService) { }
+  constructor(private router: Router, private authService: AuthService, private userService: UserService) {
+    this.userService.setUser(new User(0, " ", " ", " ", ""));
+  }
 
   onSwitchViewType(viewType: string) {
     this.viewType = viewType;

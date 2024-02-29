@@ -11,6 +11,7 @@ import {Product} from "../models/Product";
 import {ProductService} from "../services/product.service";
 import {CartButtonComponent} from "./cart-button/cart-button.component";
 import {CartService} from "../services/cart.service";
+import {User} from "../models/User";
 
 @Component({
   selector: 'app-home',

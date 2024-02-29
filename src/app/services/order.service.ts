@@ -8,7 +8,11 @@ import {Product} from "../models/Product";
 })
 export class OrderService {
 
-  constructor(private httpClient: HttpClient) { }
+  orderPlaced: boolean;
+
+  constructor(private httpClient: HttpClient) {
+    this.orderPlaced = false;
+  }
 
   placeOrder(user: User, products: Array<Product>) {
     let body = {

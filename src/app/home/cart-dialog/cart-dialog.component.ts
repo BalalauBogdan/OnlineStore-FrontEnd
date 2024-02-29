@@ -43,6 +43,7 @@ export class CartDialogComponent {
       console.log(response);
       this.cartService.cart = [];
     });
+    this.orderService.orderPlaced = true;
     this.router.navigate(["/", "order-confirmation"]);
   }
 }
